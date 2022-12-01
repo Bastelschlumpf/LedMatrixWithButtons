@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="Platte.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="3.1108586"
+     inkscape:cx="370.15504"
+     inkscape:cy="319.52593"
+     inkscape:window-width="3840"
+     inkscape:window-height="2066"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="path1113"
+       cx="55.899998"
+       cy="119.9"
+       rx="7.8499994"
+       ry="7.8499999" />
+    <circle
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="path1113-0"
+       cx="92.900002"
+       cy="119.9"
+       r="7.8499999" />
+    <circle
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="path1113-0-5"
+       cx="129.90001"
+       cy="119.9"
+       r="7.8499999" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect846"
+       width="164.89999"
+       height="119.90001"
+       x="10.05"
+       y="30.050001" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect1009"
+       width="32"
+       height="32"
+       x="40.049999"
+       y="60.049999" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect1009-3"
+       width="32"
+       height="32"
+       x="77.050003"
+       y="60.049999" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect1009-3-8"
+       width="32"
+       height="32"
+       x="114.05"
+       y="60.049999" />
+  </g>
+</svg>
