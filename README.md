@@ -8,16 +8,38 @@
    In particular, the behavior in summer months and the interaction with the batteries has not yet been tested by me
    extensively tested in practice. 
 
-### Circuit
-   The design
+### Description
+   Project description / order
    ![Design](images/Design.png "Design")
 
    First version
    ![1.Version](images/FirstVersion.png "First version")
 
+### Circuit
+   Circuit diagram with pictures of the components   
+   ![Circuit](circuit/Circuit.png "Figure 2")
+
+### Housing
+   ![Housing](housing/Housing.png "Housing")
+
 ### Shopping list
+
+|Label |Price / unit |Sample URL |
+|------|------|-----------|
+|3 x MAX7219 8x8 Dot Matrix | 13€ | https://www.amazon.de/gp/product/B07HPD2R1H/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1 |
+|3 x Button | 8€ (15 pices) | https://www.amazon.de/gp/product/B07N1N1T7R/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1 |
+
+Additionally plexiglass for the front panel for lasering and filament for the 3D printer
 
 ### License
    This program is licensed under GPL-3.0
 
 ### Thanks
+
+* https://www.az-delivery.de  
+  *Many thanks to AZDelivery for the great modules and libraries**
+* https://www.arduino.cc  
+  *Thanks to the Arduino community with all its incredible possibilities and support.** 
+* http://fritzing.org/home  
+  *Thanks to the fritzing team for this very intuitive usable software.* 
+
