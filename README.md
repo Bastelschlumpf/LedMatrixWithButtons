@@ -9,7 +9,7 @@
    extensively tested in practice. 
 
 ### Description
-   Project description / order
+   The whole project description
    ![Design](images/Design.png "Design")
 
    First version
