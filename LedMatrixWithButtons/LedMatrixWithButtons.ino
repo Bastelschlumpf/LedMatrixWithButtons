@@ -34,8 +34,8 @@
 MD_MAX72XX display = MD_MAX72XX(HARDWARE_TYPE, SPI_DATA_PIN, SPI_CLK_PIN, SPI_CS_PIN, MAX_DEVICES);
 
 ezButton   button1( 0);
-ezButton   button2(16);
-ezButton   button3( 4);
+ezButton   button2( 4);
+ezButton   button3(16);
 
 int        number1 = 0;
 int        number2 = 0;
