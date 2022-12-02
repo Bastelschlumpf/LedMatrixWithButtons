@@ -15,6 +15,9 @@
    First version
    ![1.Version](images/FirstVersion.png "First version")
 
+   Back
+   ![Back](images/Soldered.png "Soldered")
+
 ### Circuit
    Circuit diagram with pictures of the components   
    ![Circuit](circuit/Circuit.png "Figure 2")
