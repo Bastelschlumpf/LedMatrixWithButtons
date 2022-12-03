@@ -23,6 +23,8 @@
 #include <MD_MAX72xx.h>
 #include <SPI.h>
 #include <ezButton.h>
+#include "MD_EyePair.h" 
+
 
 #define HARDWARE_TYPE MD_MAX72XX::GENERIC_HW
 #define MAX_DEVICES 3
@@ -33,6 +35,9 @@
 
 MD_MAX72XX display = MD_MAX72XX(HARDWARE_TYPE, SPI_DATA_PIN, SPI_CLK_PIN, SPI_CS_PIN, MAX_DEVICES);
 
+MD_EyePair eyePair;
+#define    EYEDELAYTIME  500  // in milliseconds 
+
 ezButton   button1( 0);
 ezButton   button2( 4);
 ezButton   button3(16);
@@ -41,8 +46,11 @@ int        number1 = 0;
 int        number2 = 0;
 int        number3 = 0;
 
+bool       demoModeActive = true;
+bool       eyeModeActive  = false;
+
 /** I use fix number pixels. */
-const uint8_t numbers[10][8] = {
+const uint8_t numbers[11][8] = {
   {   0,  62,  81,  73,  69,  62,   0,   0 }, // 48 - '0'
   {   0,   4,   2, 127,   0,   0,   0,   0 }, // 49 - '1'
   {   0, 113,  73,  73,  73,  70,   0,   0 }, // 50 - '2'
@@ -53,7 +61,16 @@ const uint8_t numbers[10][8] = {
   {   0,   3,   1,   1,   1, 127,   0,   0 }, // 55 - '7'
   {   0,  54,  73,  73,  73,  54,   0,   0 }, // 56 - '8'
   {   0,   6,  73,  73,  73,  62,   0,   0 }, // 57 - '9'
+  {   0,   0,   0,   0,   0,   0,   0,   0 }, // Off
 };
+
+/** Switch off every number */
+void clearNumbers()
+{
+   printNumber(0, 10);
+   printNumber(1, 10);
+   printNumber(2, 10);
+}
 
 /** Display one number on one of the displays */
 void printNumber(int displayNr, int number)
@@ -81,8 +98,8 @@ void checkButton(ezButton &button, int &number)
    }
 }
 
-/** Check if two or more buttons are pressed.  */
-bool isReset()
+/** How many buttons are pushed?  */
+int buttonPushed()
 {
    int pushed = 0;
    
@@ -95,7 +112,90 @@ bool isReset()
    if (button3.getStateRaw() == 0) {
       pushed++;
    }
-   return (pushed >= 2);
+   return pushed;
+}
+
+/** Special delay with button check  */
+bool myDelay(int sec)
+{
+   for (int i = 0; i < sec * 100; i++) {
+      delay(10);
+      if (buttonPushed()) {
+         return true;
+      }
+   }
+   return false;
+}
+
+/** Demo mode  */
+void demoMode()
+{
+   clearNumbers();
+   for (int i = 1; i<= 5; i++) {
+      printNumber(0, i);
+      if (myDelay(2)) return;
+   }
+   clearNumbers();
+   for (int i = 1; i<= 5; i++) {
+      printNumber(1, i);
+      if (myDelay(2)) return;
+   }
+   clearNumbers();
+   for (int i = 1; i<= 5; i++) {
+      printNumber(2, i);
+      if (myDelay(2)) return;
+   }
+   
+   clearNumbers();
+   for (int i = 1; i<= 5; i++) {
+      printNumber(0, i);
+      if (myDelay(2)) return;
+      clearNumbers();
+      if (myDelay(1)) return;
+   }
+   clearNumbers();
+   for (int i = 1; i<= 5; i++) {
+      printNumber(1, i);
+      if (myDelay(2)) return;
+      clearNumbers();
+      if (myDelay(1)) return;
+   }
+   clearNumbers();
+   for (int i = 1; i<= 5; i++) {
+      printNumber(2, i);
+      if (myDelay(2)) return;
+      clearNumbers();
+      if (myDelay(1)) return;
+   }
+}
+
+/** Eye mode  */
+void eyeMode()
+{
+   eyePair.animate();
+}
+
+/** Regular button mode */
+void buttonMode()
+{
+   static int msec = millis();
+   
+   checkButton(button1, number1);
+   checkButton(button2, number2);
+   checkButton(button3, number3);
+
+   if (buttonPushed() >= 2) {
+      number1 = number2 = number3 = 0;
+      Serial.println("Reset");
+   }
+
+   if (millis() - msec > 100) {
+      msec = millis();
+
+      printNumber(0, number1);
+      printNumber(1, number2);
+      printNumber(2, number3);
+   }
 }
 
 /** Main loop
@@ -111,34 +211,50 @@ void setup()
    display.begin();
    display.control(MD_MAX72XX::INTENSITY, 3);
 
+   eyePair.begin(0, 2, &display, EYEDELAYTIME);
+
    button1.setDebounceTime(50);
    button2.setDebounceTime(50);
    button3.setDebounceTime(50);
 }
 
 /** Main loop
-  * Check the buttons
-  * Reset the all numbers if more than 2 buttons are pressed
-  * And update the 3 numbers every 100ms
-  */
+ *  Multi mode display
+ *  buttonMode: display 3 numbers and increase when pushed the button
+ *  demoMode: (after 5 seconds without pushing)
+ *     Iterates from 1 to 5 for all 3 display
+ *     then iterates with pause between
+ *     shows always only one digit
+ *  eyeMode: shows eyes (start after 60 seconds)
+ */
 void loop()
 {
    static int msec = millis();
-   
-   checkButton(button1, number1);
-   checkButton(button2, number2);
-   checkButton(button3, number3);
 
-   if (isReset()) {
-      number1 = number2 = number3 = 0;
-      Serial.println("Reset");
-   }
-
-   if (millis() - msec > 100) {
-      msec = millis();
-
-      printNumber(0, number1);
-      printNumber(1, number2);
-      printNumber(2, number3);
+   if (demoModeActive || eyeModeActive) {
+      if (millis() - msec > 60000 && !eyeModeActive) {
+         eyeModeActive = true;
+         clearNumbers();
+         eyePair.reinit();
+      }
+      if (eyeModeActive) {
+         eyeMode();
+      } else {
+         demoMode();
+      }
+      if (buttonPushed()) {
+         demoModeActive = false;
+         eyeModeActive  = false;
+         msec = millis();
+      }
+   } else {
+      if (buttonPushed()) {
+         msec = millis();
+      }
+      if (millis() - msec > 10000) {
+         demoModeActive = true;
+         eyeModeActive  = false;
+      }
+      buttonMode();
    }
 }

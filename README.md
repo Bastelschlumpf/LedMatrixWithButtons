@@ -15,7 +15,7 @@
    First version
    ![1.Version](images/FirstVersion.png "First version")
 
-   Back
+   Soldered
    ![Back](images/Soldered.png "Soldered")
 
 ### Circuit
@@ -23,7 +23,24 @@
    ![Circuit](circuit/Circuit.png "Figure 2")
 
 ### Housing
+   3D model with 123D DESIGN
    ![Housing](housing/Housing.png "Housing")
+
+   Housing 3D printed
+   ![Housing](images/Housing3D.png "Housing")
+
+### Final version
+   ![Final](images/Final.png "Final")
+
+   At the end the display has 3 modes  
+   buttonMode: 
+      display 3 numbers and increase when pushed the button  
+      reset if more than one button is pressed  
+   demoMode: (after 5 seconds without pushing)  
+      Iterates from 1 to 5 for all 3 display  
+      then iterates with pause between  
+      shows always only one digit  
+   eyeMode: shows eyes (start after 60 seconds)  
 
 ### Shopping list
 
